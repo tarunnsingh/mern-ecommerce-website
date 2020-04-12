@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "An Ecommerce Website using MERN Stack",
   "main": "index.js",
+  "engine": {
+    "node": "12.16.1",
+    "npm": "6.13.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js",
+    "backend": "nodemon server/index.js"
   },
   "author": "Tarun Singh",
   "license": "ISC",

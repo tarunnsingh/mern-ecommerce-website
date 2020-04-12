@@ -43,7 +43,7 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
-app.post("/api/users/login", (req, res) => {
+app.post("/api/user/login", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user)
       return res.json({
@@ -64,4 +64,16 @@ app.post("/api/users/login", (req, res) => {
   });
 });
 
-app.listen(5000);
+app.get("/api/user/logout", auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true,
+    });
+  });
+});
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server running at ${port}`);
+});
